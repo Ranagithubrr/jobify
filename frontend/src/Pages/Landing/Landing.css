@@ -1,0 +1,36 @@
+.landingTwoDiv{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    min-height:80vh;
+}
+.landingleft .logregbtn{
+    display: inline;
+}
+.landingleft h1{
+    color:#102A43;
+    font-size: 45px;
+    font-weight: 700;
+    padding-bottom:20px;
+
+}
+.defaultBtn {
+    background: #2CB1BC;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 15px;
+    font-size: 18px;
+    font-weight: 500;
+  }
+.defaultBtn:hover{
+    background: #25868f;
+    color: white;
+    transition: 0.3s ease;
+  }
+
+  @media screen and (max-width:768px) {
+    .landingTwoDiv{
+        grid-template-columns: 1fr;
+    }
+  }

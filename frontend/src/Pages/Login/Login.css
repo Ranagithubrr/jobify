@@ -1,0 +1,44 @@
+.signinpage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #F0F4F8;
+   
+}
+
+.signinArea {
+    background-color: #FFFFFF;
+    padding: 30px 30px;
+    border-radius: 5px;
+    border-top: 5px solid #2CB1BC;
+    text-align: center;
+    -webkit-box-shadow: 1px 1px 9px 0px rgba(204,204,204,1);
+    -moz-box-shadow: 1px 1px 9px 0px rgba(204,204,204,1);
+    box-shadow: 1px 1px 9px 0px rgba(204,204,204,1);
+}
+
+.inputArea {
+    width: 100%;
+    text-align: left;
+
+}
+
+.inputArea label {
+    display: block;
+    text-transform: capitalize;
+    padding-bottom: 10px;
+    font-weight: 400;
+}
+
+.inputArea input {
+    width: 300px;
+    border: 1px solid #bcccdc;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+}
+.signreglink a {
+   color:#2CB1BC;
+   text-decoration: none;
+}

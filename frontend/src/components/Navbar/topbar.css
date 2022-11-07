@@ -1,0 +1,50 @@
+.topbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:20px 50px;
+}
+.topbar .baricon{
+    font-size: 30px;
+    color:#2CB1BC;
+    font-weight: 800;
+    cursor:pointer;
+}
+.userButtonArea{
+    position: relative;
+}
+.topbar .logOutButton{
+    background-color: #BEF8FD;
+    color:#06909c;
+    border:none;
+    outline:none;
+    border-radius:5px;
+    padding:3px 15px;
+    position:absolute;
+    top:40px;
+    left:0;
+    right:0;
+    margin:0 auto;
+    font-weight: 500;
+}
+.topbar .userButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #2CB1BC;
+    color:#fff;
+    border:none;
+    outline:none;
+    border-radius:5px;
+    padding:3px 15px;
+    font-size: 22px;
+    font-weight: 500;
+    gap: 0px 0.5rem;
+    transition: 0.2s ease;
+}
+.topbar .userButton span{
+    font-size: 17px;
+}
+.topbar .userButton:hover{
+    background-color: #3d9ba3;
+}

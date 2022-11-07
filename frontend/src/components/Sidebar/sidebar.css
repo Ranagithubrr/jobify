@@ -1,0 +1,40 @@
+.sidebar .sidebarLogo{
+    padding:25px 0 0  20px;
+}
+.sidebar .sidebarMenu{
+    padding-top: 60px;
+}
+.sidebar .sidebarMenu ul{
+    padding-left: 0;
+}
+.sidebar .sidebarMenu ul li{
+    list-style: none;
+    
+    font-size: 16px;
+    width: 100%;
+    display: block;
+    
+}
+
+.sidebar .sidebarMenu ul li:hover{
+    background-color: #9ec4e952;
+    
+}
+.sidebar .sidebarMenu ul li a{
+    text-decoration: none;
+    color:#627d98;
+    font-weight: 500;
+    display: block;
+    width: 100%;
+    height:100%;
+    padding:8px 30px;
+    transition: 0.5s ease;
+}
+.sidebar .sidebarMenu ul li a:hover, .sidebar .sidebarMenu ul li a:active{
+    color:#0E7C86;
+    padding:8px 40px;
+}
+.sidebar .sidebarMenu .navicons{
+    font-size: 25px;
+    padding-right: 10px;
+}

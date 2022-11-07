@@ -1,0 +1,23 @@
+.dashboard{
+    display: flex;
+    background-color: #f7f7f7;
+}
+.dashboard .sidebarArea{
+   width:250px;
+   margin-left: -250px;  
+   transition: 0.3s ease-in-out;   
+   
+}
+.dashboard .showSideBar{
+   width:250px;    
+   margin-left:0;
+}
+.dashboard .mainArea{
+    width:100%;
+}
+.dashboard .mainArea .mainAreaInner{
+    border:1px solid #d6d6d6;
+     background-color: #F0F4F8;
+     min-height:90vh;
+     padding:50px;
+}

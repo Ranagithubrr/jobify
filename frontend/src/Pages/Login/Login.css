@@ -8,6 +8,7 @@
 }
 
 .signinArea {
+    width:400px;
     background-color: #FFFFFF;
     padding: 30px 30px;
     border-radius: 5px;
@@ -31,8 +32,8 @@
     font-weight: 400;
 }
 
-.inputArea input {
-    width: 300px;
+.inputArea input , textarea{
+    width: 100%;
     border: 1px solid #bcccdc;
     border-radius: 5px;
     padding: 5px 10px;

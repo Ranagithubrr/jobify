@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import Logo from '../../assets/images/logo.svg';
-import {Link} from 'react-router-dom';
+import {Link,useNavigate} from 'react-router-dom';
 
 const Register = () => {
+    const navigate = useNavigate();
     const [user, setUser] = useState({
         name:"", email:"", password:""
     });
@@ -31,8 +32,12 @@ const Register = () => {
         if(res.status === 201 || res.status === 200){
             window.alert('user created successfully');
             console.log(data);
+            // redirect to login page 
+            navigate('/login');
+        }else if(res.status === 406){
+            window.alert('user already exists');
         }else{
-            window.alert('error');
+            window.alert('error')
         }
 
 

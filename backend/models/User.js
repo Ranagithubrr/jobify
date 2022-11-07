@@ -30,7 +30,7 @@ const UserSchema = new mongoose.Schema({
         type: String,
         trim: true,
         maxlength: 20,
-        default: 'last name'
+        default: ''
     },
     location: {
         type: String,
@@ -38,6 +38,46 @@ const UserSchema = new mongoose.Schema({
         maxlength: 40,
         default: 'my city'
     },
+    address: {
+        type: String,
+        trim: true,
+        maxlength: 40,
+        default: 'my address'
+    },
+    bloodgroup: {
+        type: String,
+        trim: true,
+        maxlength: 40,
+        default: ''
+    },
+    about: {
+        type: String,
+        trim: true,
+        maxlength: 100,
+        default: ''
+    },
+    education: {
+        type: String,
+        trim: true,
+        maxlength: 40,
+        default: ''
+    },
+    phone: {
+        type: Number,
+        trim: true,
+        maxlength: 11,
+        default: ''
+    },
+    title: {
+        type: String,
+        trim: true,
+        maxlength: 40,
+        default: ''
+    },
+    skills:{
+        type:Array,
+        default:[],
+    }
 });
 
 
@@ -48,6 +88,11 @@ UserSchema.pre('save', async function(){
 
 UserSchema.methods.createJWT = function () {
     return jwt.sign({userId:this._id}, process.env.JWT_SECRET,  {expiresIn: process.env.JWT_LIFETIME})
+};
+
+UserSchema.methods.comparePassword = async function (candidatePassword){
+    const isMatch = await bcrypt.compare(candidatePassword, this.password);
+    return isMatch;
 }
 
 

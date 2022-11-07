@@ -1,0 +1,162 @@
+.profileArea {
+   width: 85%;
+   margin: auto;
+   /* background-color: green; */
+   /* border:5px solid #2CB1BC; */
+   box-shadow: 0px -1px 12px 0px rgba(105, 105, 105, 0.9);
+   -webkit-box-shadow: 0px -1px 12px 0px rgba(148, 147, 147, 0.9);
+   -moz-box-shadow: 0px -1px 12px 0px rgba(133, 132, 132, 0.9);
+   border-radius: 5px;
+   /* display: flex; */
+   /* padding:20px 40px;  */
+}
+
+.profileArea .profileAreaLeft {
+   /* border-right: 5px solid #2CB1BC; */
+   text-align: center;
+   padding: 20px 40px;
+
+}
+
+.profileArea .profileAreaLeft .profileImageArea {
+   height: auto;
+   width: 100%;
+   background-color: #38caf7;
+   border-radius: 5px;
+   overflow: hidden;
+}
+
+.profileArea .profileAreaLeft .usersSkills {
+   text-align: left;
+   padding-top: 20px;
+}
+
+.profileArea .profileAreaLeft .usersSkills ul {
+   margin: 0;
+   padding: 0;
+
+}
+
+.profileArea .profileAreaLeft .usersSkills ul li {
+   list-style-type: none;
+   font-size: 14px;
+   font-weight: 500;
+   padding-top: 5px;
+   text-transform: uppercase;
+   font-size: 14px;
+   font-weight: 500;
+}
+
+.profileArea .profileAreaLeft .usersSkills ul li:first-child {
+   list-style-type: none;
+   font-size: 12px;
+   font-weight: 700;
+   text-transform: uppercase;
+   color: #9b9b9b;
+}
+
+.profileArea .profileAreaLeft .profileImage {
+   width: 100%;
+   height: 100%;
+
+}
+
+.profileArea .profileAreaLeft h2 {
+   font-size: 40px;
+   margin: 0;
+   font-weight: 700;
+}
+
+.profileArea .profileAreaLeft h5 {
+   font-size: 16px;
+   margin: 0;
+   font-weight: 700;
+   color: #000000b7;
+}
+
+.profileArea .profileAreaLeft .profileMailBox a {
+   font-size: 2rem;
+   color: #2CB1BC;
+   padding-top: 20px;
+   display: block;
+}
+
+.profileArea .profileAreaRight {
+   padding: 20px;
+}
+
+.profileArea .profileAreaRight .profileAreraRightTop {
+   display: flex;
+   justify-content: space-between;
+   padding-right: 50px;
+}
+
+.profileArea .profileAreaRight .profileAreraRightTop .profileAreraRightTopLeft .userName {
+   font-size: 30px;
+   font-weight: 700;
+   margin: 0;
+}
+
+.profileArea .profileAreaRight .profileAreraRightTop .profileAreraRightTopLeft .profession {
+   font-size: 15px;
+   color: #16646b;
+   padding-top: 10px;
+   font-weight: 600;
+}
+
+.profileArea .profileAreaRight .profileAreraRightTop .profileAreraRightTopRight .editProfileBtn {
+   border: none;
+   outline: none;
+   padding: 5px 20px;
+   border-radius: 10px;
+   background-color: #4b6568;
+   color: #dbdbdb;
+   transition: 0.3s ease;
+   text-decoration: none;
+}
+
+.profileArea .profileAreaRight .profileAreraRightTop .profileAreraRightTopRight .editProfileBtn:hover {
+   background-color: #25a0ad;
+   color: #dbdbdb;
+}
+
+.profileArea .profileAreaRight .profileAreraRightBottom .navLinkBtn {
+   background: none;
+   outline: none;
+   border: none;
+   color: #0a0a0a;
+   /* color:#464646; */
+   font-weight: 600;
+}
+
+.profileArea .profileAreaRight .profileAreraRightBottom ul {
+   border-bottom: none;
+}
+
+.profileArea .profileAreaRight .profileAreraRightBottom ul .active {
+   border-bottom: 3px solid #149aa7;
+   color: #149aa7;
+}
+
+/* About section design  */
+
+.profileSectionAbout {
+   display: flex;
+   padding-right: 50px;
+   padding-top: 20px;
+}
+
+.profileSectionAbout div {
+   width: 50%;
+}
+
+.profileSectionAbout span {
+   display: block;
+   font-weight: 500;
+   font-size: 15px;
+   padding-top: 15px;
+}
+
+.profileSectionAbout .profileSectionAboutRight span {
+   color: #149aa7;
+}

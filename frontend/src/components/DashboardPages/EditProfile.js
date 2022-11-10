@@ -1,12 +1,61 @@
-import React, { useState } from 'react';
+import React, { useReducer, useState } from 'react';
 import './editprofile.css';
-import {FiEdit} from 'react-icons/fi'
+import { FiEdit } from 'react-icons/fi'
+import { useEffect } from 'react';
 
-const EditProfile = () => {
+const EditProfile = (props) => {
+    const id = localStorage.getItem('userid');
+
+    // loading the user
+    const [user, setUser] = useState({ response: {} });
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+        LoadUserDataFunc();
+    }, []);
+
+    const userid = JSON.parse(localStorage.getItem('userid'));
+
+    const LoadUserDataFunc = async () => {
+
+        try {
+            const res = await fetch('/api/v1/jobs/userdata', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    userid
+                }),
+            });
+            const response = await res.json();
+            if (response) {
+                setUser({ ...user, response });
+                setLoading(false);
+            }
+        }
+        catch (err) {
+            console.log('err');
+        }
+    };
+    console.log(loading);
+
+
+    // console.log(User);
+
+
+    const { name, lastname, title, phone, education, location, bloodgroup, about } = user.response;
+    // console.log(name);
+
+
+    let names, values;
+    const handleChange = (e) => {
+        names = e.target.name;
+        values = e.target.value;
+        setNewuser({ ...newuser, [names]: values });
+    }
+
     let skills = [];
     const CheckboxChanged = (e) => {
-        // skills.push(e.target.value);
-        // console.log(skills);
         let userExists = skills.indexOf(e.target.value) > -1; //true
         if (!userExists) {
             skills.push(e.target.value)
@@ -16,60 +65,90 @@ const EditProfile = () => {
                     skills.splice(i, 1);
                 }
             }
-        }
-        // console.log(userExists);
-        // console.log(skills);
+        };
+        console.log(skills);
     };
-    const UpdataClicked = () =>{
-        console.log('clicked');
+
+
+    const [newuser, setNewuser] = useState({
+        'name': name,
+        'lastname': lastname,
+        'title': title,
+        'phone': phone,
+        'education': education,
+        'location': location,
+        'bloodgroup': bloodgroup,
+        'about': about,
+        'skills': [skills]
+    })
+
+    // const [reducerValue,forcedUpdate] = useReducer(x=>x+1,0);
+
+    const UpdataBtnClicked = async () => {
+        console.log(skills);
+        const { name, lastname, title, phone, education, location, bloodgroup, about } = newuser;
+        const res = await fetch('/api/v1/auth/update', {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                id, name, lastname, title, phone, education, location, bloodgroup, skills, about
+            }),
+        });
+        const data = await res;
+        console.log(data);
+        if (data.status === 406) {
+            window.alert('Select up to 5 skills')
+        }
+        if (data.status === 200) {
+            window.alert('Data Updated Successfully');
+            window.location.reload();
+        }
     }
-
-
-    // getting input fields value
-    
 
     return (
         <div className='profileArea'>
             <div className="row editProfieEdit">
                 <div className="col-6">
                     <div className="inputArea">
-                        <input type="text" id="name" name="name" placeholder='First Name' />
+                        <input type="text" id="name" name="name" defaultValue={name} onChange={handleChange} placeholder='First Name' />
                     </div>
                     <div className="inputArea">
-                        <input type="text" id="title" name="title" placeholder='Title' />
+                        <input type="text" id="title" name="title" defaultValue={title} onChange={handleChange} placeholder='Title' />
                     </div>
                     <div className="inputArea">
-                        <input type="text" id="education" name="education" placeholder='Education' />
+                        <input type="text" id="education" name="education" defaultValue={education} onChange={handleChange} placeholder='Education' />
                     </div>
                     <div className="inputArea">
-                        <input type="text" id="location" name="location" placeholder='Location' />
+                        <input type="text" id="location" name="location" defaultValue={location} onChange={handleChange} placeholder='Location' />
                     </div>
-                    
-                    
+
+
                 </div>
                 <div className="col-6">
                     <div className="inputArea">
-                        <input type="text" id="lastname" name="lastname" placeholder='Last Name' />
+                        <input type="text" id="lastname" name="lastname" defaultValue={lastname} onChange={handleChange} placeholder='Last Name' />
                     </div>
                     <div className="inputArea">
-                        <input type="number" id="phone" name="phone" placeholder='Phone' />
+                        <input type="number" id="phone" name="phone" defaultValue={phone} onChange={handleChange} placeholder='Phone' />
                     </div>
                     <div className="inputArea">
-                        <input type="email" id="email" name="email" placeholder='email is not changeable' disabled />
+                        <input type="email" id="email" name="email" onChange={handleChange} placeholder='email is not changeable' disabled />
                     </div>
                     <div className="inputArea">
                         <div className="bloodGroupBox">
-                        <span>Blood Group</span>
-                        <select name="blood" id="blood">
-                            <option value="A+">A+</option>
-                            <option value="A-">A-</option>
-                            <option value="B+">B+</option>
-                            <option value="B-">B-</option>
-                            <option value="O+">O+</option>
-                            <option value="O-">O-</option>
-                            <option value="AB+">AB+</option>
-                            <option value="AB-">AB-</option>
-                        </select>
+                            <span>Blood Group</span>
+                            <select name="bloodgroup" id="blood" onChange={handleChange} defaultValue={bloodgroup}>
+                                <option value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                            </select>
                         </div>
 
                     </div>
@@ -77,7 +156,7 @@ const EditProfile = () => {
                 </div>
                 <div className="row">
                     <div className="col">
-                    <h5>Skills</h5>
+                        <h5>Skills</h5>
                         <div className="skillsArea">
                             <div className="skillsBox">
                                 <label><input type="checkbox" onChange={CheckboxChanged} value="HTML" />HTML</label>
@@ -144,15 +223,15 @@ const EditProfile = () => {
                 </div>
                 <div className="row editProfileAboutTextArea">
                     <div className="col">
-                        <textarea name="about" id="" cols="30" rows="5" placeholder='About yourself . . .'></textarea>
+                        <textarea name="about" id="" cols="30" rows="5" placeholder='About yourself . . .' onChange={handleChange} defaultValue={about}></textarea>
                     </div>
                     <div className="userButtonArea">
-                    <button className='defaultBtn' onClick={UpdataClicked}> <FiEdit /> Update</button>
+                        <button className='defaultBtn' onClick={UpdataBtnClicked}> <FiEdit /> Update</button>
+
                     </div>
-                    
+
                 </div>
             </div>
-
         </div>
     )
 }

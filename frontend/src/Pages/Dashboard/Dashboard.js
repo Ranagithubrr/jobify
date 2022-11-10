@@ -6,6 +6,7 @@ import Sidebar from '../../components/Sidebar/Sidebar';
 import './dashboard.css';
 
 const Dashboard = (props) => {
+  console.log(props.User.response.name);
   const [sideBarClass, setSideBarClass] = useState('')
   const Toggler = (data) => {
     data === '' ? setSideBarClass('showSideBar') : setSideBarClass('');
@@ -16,7 +17,7 @@ const Dashboard = (props) => {
         <Sidebar />
       </div>
       <div className="mainArea">
-        <div><Topbar func={Toggler} User={props.User}/></div>
+        <div><Topbar func={Toggler} User={props.User} IsLoading={props.IsLoading}/></div>
         <div className='mainAreaInner'>
           <Outlet />
         </div>

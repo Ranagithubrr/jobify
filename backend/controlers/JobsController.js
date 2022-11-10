@@ -13,6 +13,17 @@ const updateJob = async (req,res) =>{
 const showStats = async (req,res) =>{
     res.send('show stats')
 }
+
+// send all users to the home page 
+
+const allUsers = async (req,res) =>{
+    User.find({}, function(err,user){
+        if(err){
+            res.status(400).json({msg:"server error"})
+        }
+        res.status(200).json({user})
+    })
+} 
 const userData = async (req,res) =>{
     
     const id = req.body.userid;
@@ -30,4 +41,4 @@ const userData = async (req,res) =>{
     
 }
 
-export {createJob, deleteJob, updateJob, showStats,userData}
+export {createJob, deleteJob, updateJob, showStats,userData,allUsers}

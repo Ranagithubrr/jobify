@@ -13,7 +13,7 @@ const Sidebar = () => {
       <div className="sidebarMenu">
 
         <ul>
-            <li> <Link to="/"> <span className="navicons"><ImStatsBars /></span> States</Link> </li>
+            <li> <Link to="/"> <span className="navicons"><ImStatsBars /></span> All Users</Link> </li>
             <li> <Link to="/all-jobs"><span className="navicons"><MdQueryStats /></span> All jobs</Link> </li>
             <li> <Link to="/add-jobs"><span className="navicons"><RiProfileLine /></span> Add jobs</Link> </li>
             <li> <Link to="/profile"><span className="navicons"><ImProfile /></span> Profile</Link> </li>

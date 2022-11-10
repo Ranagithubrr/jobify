@@ -64,29 +64,92 @@ const login = async (req, res) => {
 }
 const update = async (req, res) => {
     // console.log(req.body);
-    const userid = req.body.id;
-    const { name, email, location, lastname, about, bloodgroup, address, education, phone, title, skills } = req.body;
-    if (skills && skills.length > 8) {
-        res.status(406).send("Select up to 5 skills")
-    } else {
+    // const userid = req.body.id;
+    const userid = JSON.parse(req.body.id);
+    console.log(userid);
+    const { name, location, lastname, about, bloodgroup, address, education, phone, title, skills } = req.body;
+    // console.log(skills);
+    if (skills) {
+        if (skills.length>5) {
+            res.status(406).json({msg:"Select up to 5 skills"})
+            // console.log(skills.length);
+            res.end()
+        } else {
 
-
+            const filter = { '_id': userid };
+            const doc = await User.findOne(filter);
+            console.log('old data is: ', doc);
+            console.log('old skills is: ',doc.skills);
+            // const update = {
+            //     name:  name == "" ? doc.name : name,
+            //     email: email == "" ? doc.email : email,
+            //     location: location == "" ? "" : location,
+            //     lastname: lastname == "" ? "" : lastname,
+            //     about: about == "" ? "" : about,
+            //     bloodgroup: bloodgroup == "" ? "" : bloodgroup,
+            //     education: education == "" ? "" : education,
+            //     phone: phone == "" ? "" : phone,
+            //     title: title == "" ? "" : title,
+            //     address: address == "" ? "" : address,
+            //     skills: skills == "" ? "" : skills
+            // };
+            const update = {
+                name:  name == undefined ? doc.name :  name == "" ? "" : name,
+                // email: email == undefined ? doc.email :  email == "" ? "" : email,
+                location: location == undefined ? doc.location :  location == "" ? "" : location,
+                lastname: lastname == undefined ? doc.lastname :  lastname == "" ? "" : lastname,
+                about: about == undefined ? doc.about :  about == "" ? "" : about,
+                bloodgroup: bloodgroup == undefined ? doc.bloodgroup :  bloodgroup == "" ? "" : bloodgroup,
+                education: education == undefined ? doc.education :  education == "" ? "" : education,
+                phone: phone == undefined ? doc.phone :  phone == "" ? "" : phone,
+                title: title == undefined ? doc.title :  title == "" ? "" : title,
+                address: address == undefined ? doc.address :  address == "" ? "" : address,
+                skills: !skills || skills.length == 0   ? doc.skills : skills,
+            };
+            // let updated = await User.findOneAndUpdate(filter, update);
+            User.findOneAndUpdate(filter, update, { upsert: true }, function (err, res) {
+                if (err) {
+                    res.status(400).json({ msg: "not changed" })
+                }
+                return res;
+                
+            });
+            res.status(200).json({msg:'data send'});
+            const newData = await User.findOne(filter);
+            console.log('updated skills is: ', skills);
+            console.log('updated data is:', newData);
+        }   
+    }else {
 
         const filter = { '_id': userid };
         const doc = await User.findOne(filter);
-        // console.log('old data is: ', doc);
+        console.log('old data is: ', doc);
+        console.log('old skills is: ',doc.skills);
+        // const update = {
+        //     name:  name == "" ? doc.name : name,
+        //     email: email == "" ? doc.email : email,
+        //     location: location == "" ? "" : location,
+        //     lastname: lastname == "" ? "" : lastname,
+        //     about: about == "" ? "" : about,
+        //     bloodgroup: bloodgroup == "" ? "" : bloodgroup,
+        //     education: education == "" ? "" : education,
+        //     phone: phone == "" ? "" : phone,
+        //     title: title == "" ? "" : title,
+        //     address: address == "" ? "" : address,
+        //     skills: skills == "" ? "" : skills
+        // };
         const update = {
-            name: name,
-            email: email,
-            location: location,
-            lastname: lastname,
-            about: about,
-            bloodgroup: bloodgroup,
-            education: education,
-            phone: phone,
-            title: title,
-            address: address,
-            skills: skills
+            name:  name == undefined ? doc.name :  name == "" ? "" : name,
+            // email: email == undefined ? doc.email :  email == "" ? "" : email,
+            location: location == undefined ? doc.location :  location == "" ? "" : location,
+            lastname: lastname == undefined ? doc.lastname :  lastname == "" ? "" : lastname,
+            about: about == undefined ? doc.about :  about == "" ? "" : about,
+            bloodgroup: bloodgroup == undefined ? doc.bloodgroup :  bloodgroup == "" ? "" : bloodgroup,
+            education: education == undefined ? doc.education :  education == "" ? "" : education,
+            phone: phone == undefined ? doc.phone :  phone == "" ? "" : phone,
+            title: title == undefined ? doc.title :  title == "" ? "" : title,
+            address: address == undefined ? doc.address :  address == "" ? "" : address,
+            skills: !skills || skills.length == 0   ? doc.skills : skills,
         };
         // let updated = await User.findOneAndUpdate(filter, update);
         User.findOneAndUpdate(filter, update, { upsert: true }, function (err, res) {
@@ -94,11 +157,12 @@ const update = async (req, res) => {
                 res.status(400).json({ msg: "not changed" })
             }
             return res;
-
+            
         });
-        res.status(200).send('data send');
-        // const newData = await User.findOne(filter);
-        // console.log('updated data is:', newData);
+        res.status(200).json({msg:'data send'});
+        const newData = await User.findOne(filter);
+        console.log('updated skills is: ', skills);
+        console.log('updated data is:', newData);
     }
 }
 // find the user 

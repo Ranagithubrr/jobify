@@ -36,13 +36,13 @@ const UserSchema = new mongoose.Schema({
         type: String,
         trim: true,
         maxlength: 40,
-        default: 'my city'
+        default: ''
     },
     address: {
         type: String,
         trim: true,
         maxlength: 40,
-        default: 'my address'
+        default: ''
     },
     bloodgroup: {
         type: String,

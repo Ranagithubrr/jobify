@@ -1,0 +1,53 @@
+.homePageUserProfile{
+    box-shadow: 0px -1px 12px 0px rgba(105, 105, 105, 0.9);
+   -webkit-box-shadow: 0px -1px 12px 0px rgba(148, 147, 147, 0.9);
+   -moz-box-shadow: 0px -1px 12px 0px rgba(133, 132, 132, 0.9);
+   border-radius: 5px;
+   overflow: hidden;
+   transition: all 0.3s ease;
+   cursor:pointer;
+}
+.homePageUserProfile:hover{
+    transform:scale(1.1);
+    z-index: 100;
+}
+.homePageUserProfileTop{
+    background-image: url('https://img.freepik.com/free-photo/old-black-background-grunge-texture-dark-wallpaper-blackboard-chalkboard-concrete_1258-71629.jpg?w=2000');
+    text-align: center;
+    padding-top: 20px;
+}
+.homePageUserProfileTop img{
+    height:150px;
+    width:150px;
+    border-radius: 50%;
+    margin-bottom: -65px;
+    border: 5px solid #fff;
+}
+.homePageUserProfileBottom .userProfileName{
+    text-align: center;
+    margin: 0;
+}
+.homePageUserProfileBottom .profiletitle{
+    text-align: center;
+    margin: 0;
+    text-transform: capitalize;
+    font-size: 13px;
+    color:#727272;
+}
+.homePageUserProfileBottom .homePageUserProfileBottomBottom{
+    width:70%;
+    margin: auto;
+    padding:15px 0;
+    
+}
+.homePageUserProfileBottom ul{
+    margin: 0;
+    padding: 0;
+    
+}
+.homePageUserProfileBottom ul li{
+    list-style-type: none;
+}
+.homePageUserProfileBottomBottom ul li span{
+    padding-right: 10px;
+}

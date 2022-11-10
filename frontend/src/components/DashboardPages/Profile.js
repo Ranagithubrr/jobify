@@ -3,43 +3,41 @@ import ProfilePic from '../../assets/images/download.jfif';
 import { RiMailAddFill  } from 'react-icons/ri';
 import { TbChecks  } from 'react-icons/tb';
 import { Link } from 'react-router-dom';
-const Profile = (props) => {
+import { useEffect, useState } from 'react';
+const Profile = () => {
 
-  // Loading Current User
-  const user = props.User;
-  const loading = props.IsLoading;
+  const [user, setUser] = useState({ response: {} });
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    LoadUserDataFunc();
+  }, []);
 
-  // useEffect(() => {
-  //   LoadUserDataFunc();
-  // }, []);
+  const userid = JSON.parse(localStorage.getItem('userid'));
 
-  // // name: "", email: "", lastname: "", _id: "" 
-  // const [user, setUser] = useState({ response: {} });
-  // const [loading,setLoading] = useState(true);
-  // const userid = JSON.parse(localStorage.getItem('userid'));
+  const LoadUserDataFunc = async () => {
 
-  // const LoadUserDataFunc = async () => {
+    try {
+      const res = await fetch('/api/v1/jobs/userdata', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          userid
+        }),
+      });
+      const response = await res.json();
+      if (response) {
+        setUser({ ...user, response });
+        setLoading(false);
+      }
+    }
+    catch (err) {
+      console.log('err');
+    }
+  };
+  console.log(loading);
 
-  //   try {
-
-  //     const res = await fetch('/api/v1/jobs/userdata', {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json"
-  //       },
-  //       body: JSON.stringify({
-  //         userid
-  //       }),
-
-  //     });
-  //     const response = await res.json();
-  //     setUser({ ...user, response });
-  //     setLoading(false);
-  //   }
-  //   catch (err) {
-  //     console.log('err');
-  //   }
-  // };
 
 
   const {
@@ -48,7 +46,6 @@ const Profile = (props) => {
     email,
     lastname,
     _id,
-    address,
     bloodgroup,
     about,
     education,
@@ -115,9 +112,7 @@ const Profile = (props) => {
                     {
                       bloodgroup === '' ? null : <span>Blood</span>
                     }
-                    {
-                      address === '' ? null : <span>Address</span>
-                    }
+                    
                     {
                       education === '' ? null : <span>Education</span>
                     }
@@ -136,9 +131,6 @@ const Profile = (props) => {
                       bloodgroup === '' ? null : <span>{bloodgroup}</span>
                     }
                     {
-                      address === '' ? null : <span>{address}</span>
-                    }
-                    {
                       education === '' ? null : <span>{education}</span>
                     }
                     {
@@ -148,7 +140,7 @@ const Profile = (props) => {
                 </div>
               </div>
               <div className="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                <p>Timeline is currently on development</p>
+                <p>{about}</p>
               </div>
             </div>
           </div>

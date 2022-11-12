@@ -1,0 +1,27 @@
+.addPostArea{
+    box-shadow: 0px -1px 12px 0px rgba(105, 105, 105, 0.9);
+    -webkit-box-shadow: 0px -1px 12px 0px rgba(148, 147, 147, 0.9);
+    -moz-box-shadow: 0px -1px 12px 0px rgba(133, 132, 132, 0.9);
+    border-radius: 5px;
+    width:85%;
+    margin:0 auto;
+    padding:20px;
+}
+.addPostArea input, .addPostArea textarea, .addPostArea input:focus{
+    width:100%;
+    border:1px solid #c7c7c7;
+    outline:none;
+    padding:2px 5px;
+    border-radius: 5px;
+}
+.resetBtn{
+    border:none;
+    border-radius: 5px;
+    background-color: red;
+    outline:none;
+    margin-left: 5px;
+    color:#ffffff;
+    padding: 5px 15px;
+    font-size: 18px;
+    font-weight: 500;
+}

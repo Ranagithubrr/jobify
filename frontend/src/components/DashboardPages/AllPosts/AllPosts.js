@@ -1,6 +1,6 @@
 import React from 'react'
 
-const AllJobs = () => {
+const AllPosts = () => {
   return (
     <div>
       <p>this is all jobs page</p>
@@ -8,4 +8,4 @@ const AllJobs = () => {
   )
 }
 
-export default AllJobs
+export default AllPosts

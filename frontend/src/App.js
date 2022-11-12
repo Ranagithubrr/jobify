@@ -6,13 +6,14 @@ import Login from './Pages/Login/Login';
 import Register from './Pages/Register/Register';
 import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes.js';
 import Dashboard from './Pages/Dashboard/Dashboard';
-import AddJob from './components/DashboardPages/AddJob';
-import AllJobs from './components/DashboardPages/AllJobs';
-import Profile from './components/DashboardPages/Profile';
-import Homepage from './components/DashboardPages/Homepage';
 import { useEffect, useReducer } from 'react';
-import EditProfile from './components/DashboardPages/EditProfile';
 import { useState } from 'react';
+import UserProfile from './components/UserProfile/UserProfile';
+import HomePage from './components/DashboardPages/Homepage/Homepage';
+import Profile from './components/DashboardPages/Profile/Profile';
+import EditProfile from './components/DashboardPages/EditProfile/EditProfile';
+import AddPosts from './components/DashboardPages/AddPosts/AddPosts';
+import AllPosts from './components/DashboardPages/AllPosts/AllPosts';
 
 function App() {
   const [user, setUser] = useState({ response: {} });
@@ -59,10 +60,11 @@ function App() {
                 <Dashboard User={user} IsLoading={loading} />
               </ProtectedRoutes>
             }>
-              <Route index element={<Homepage />} />
-              <Route path="/add-jobs" element={<AddJob />} />
-              <Route path="/all-jobs" element={<AllJobs />} />
-              <Route path="/profile" element={<Profile User={user} IsLoading={loading} />} />
+              <Route index element={<HomePage />} />
+              <Route path="/add-posts" element={<AddPosts User={user}/>} />
+              <Route path="/all-posts" element={<AllPosts />} />
+              <Route path="/profile" element={<Profile  />} />
+              <Route path="/user/:userid" element={<UserProfile />} />
               <Route path="/edit-profile" element={<EditProfile User={user} IsLoading={loading} />} />
             </Route>
 

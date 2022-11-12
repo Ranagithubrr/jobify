@@ -2,7 +2,7 @@ import express from 'express';
 const router = express.Router();
 
 // import { createJob, deleteJob, updateJob, showStats } from '../controlers/JobsController';
-import { userData, deleteJob, updateJob, showStats,allUsers } from '../controlers/JobsController.js';
+import { userData, deleteJob, updateJob, showStats,allUsers,addPosts } from '../controlers/JobsController.js';
 
 
 
@@ -12,4 +12,5 @@ router.route('/stats').get(showStats);
 router.route('/:id').delete(deleteJob).patch(updateJob);
 router.route('/userdata').post(userData);
 router.route('/all-users').get(allUsers);
+router.route('/add-posts').post(addPosts);
 export default router;

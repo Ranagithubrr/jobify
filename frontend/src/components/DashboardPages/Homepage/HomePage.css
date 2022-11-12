@@ -1,3 +1,6 @@
+.homePageUserProfileArea a{
+    text-decoration: none;
+}
 .homePageUserProfile{
     box-shadow: 0px -1px 12px 0px rgba(105, 105, 105, 0.9);
    -webkit-box-shadow: 0px -1px 12px 0px rgba(148, 147, 147, 0.9);
@@ -6,6 +9,8 @@
    overflow: hidden;
    transition: all 0.3s ease;
    cursor:pointer;
+   color:#000;
+   text-decoration: none;
 }
 .homePageUserProfile:hover{
     transform:scale(1.1);
@@ -26,6 +31,7 @@
 .homePageUserProfileBottom .userProfileName{
     text-align: center;
     margin: 0;
+    text-decoration: none !important;
 }
 .homePageUserProfileBottom .profiletitle{
     text-align: center;

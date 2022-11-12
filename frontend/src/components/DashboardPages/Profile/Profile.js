@@ -1,9 +1,11 @@
 import './profile.css';
-import ProfilePic from '../../assets/images/download.jfif';
-import { RiMailAddFill  } from 'react-icons/ri';
-import { TbChecks  } from 'react-icons/tb';
+import ProfilePic from '../../../assets/images/download.jfif';
+import { RiMailAddFill } from 'react-icons/ri';
+import { TbChecks } from 'react-icons/tb';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { IoIosCall } from 'react-icons/io';
+
 const Profile = () => {
 
   const [user, setUser] = useState({ response: {} });
@@ -51,7 +53,8 @@ const Profile = () => {
     education,
     phone,
     title,
-    skills
+    skills,
+    website
   } = user.response;
 
   return (
@@ -65,17 +68,26 @@ const Profile = () => {
           <div className="usersSkills">
             <ul>
               <li>Skills</li>
-               {
+              {
                 loading ? console.log('loading') : (
-                  skills.map((e)=>{
+                  skills.map((e) => {
                     return <li key={e.index}> <TbChecks /> {e}</li>
                   })
                 )
-               }
-              
+              }
+
             </ul>
           </div>
-          <span className='profileMailBox'><a href={`mailto:${email}`}><RiMailAddFill /></a></span>
+          <div className="profileAreaQuickLinks">
+            <span className='profileMailBox'><a href={`mailto:${email}`}><RiMailAddFill /></a></span>
+            {
+              phone ? <span className='profileMailBox'><a href={`call:${phone}`}><IoIosCall /></a></span> : null
+            }
+            {
+              website ? <span className='profileMailBox'><a href={`call:${website}`}><IoIosCall /></a></span> : null
+            }
+          </div>
+
         </div>
         <div className="col-9 profileAreaRight">
           <div className="profileAreraRightTop">
@@ -112,7 +124,7 @@ const Profile = () => {
                     {
                       bloodgroup === '' ? null : <span>Blood</span>
                     }
-                    
+
                     {
                       education === '' ? null : <span>Education</span>
                     }

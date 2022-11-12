@@ -14,8 +14,8 @@ const Sidebar = () => {
 
         <ul>
             <li> <Link to="/"> <span className="navicons"><ImStatsBars /></span> All Users</Link> </li>
-            <li> <Link to="/all-jobs"><span className="navicons"><MdQueryStats /></span> All jobs</Link> </li>
-            <li> <Link to="/add-jobs"><span className="navicons"><RiProfileLine /></span> Add jobs</Link> </li>
+            <li> <Link to="/all-posts"><span className="navicons"><MdQueryStats /></span> All Posts</Link> </li>
+            <li> <Link to="/add-posts"><span className="navicons"><RiProfileLine /></span> Add Posts</Link> </li>
             <li> <Link to="/profile"><span className="navicons"><ImProfile /></span> Profile</Link> </li>
         </ul>
       </div>

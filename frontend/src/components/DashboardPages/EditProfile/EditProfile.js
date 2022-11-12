@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from 'react';
+import React, { useState } from 'react';
 import './editprofile.css';
 import { FiEdit } from 'react-icons/fi'
 import { useEffect } from 'react';
@@ -47,12 +47,11 @@ const EditProfile = (props) => {
     // console.log(name);
 
 
-    let names, values;
-    const handleChange = (e) => {
-        names = e.target.name;
-        values = e.target.value;
-        setNewuser({ ...newuser, [names]: values });
-    }
+
+
+    
+
+
 
     let skills = [];
     const CheckboxChanged = (e) => {
@@ -82,10 +81,20 @@ const EditProfile = (props) => {
         'skills': [skills]
     })
 
+   
     // const [reducerValue,forcedUpdate] = useReducer(x=>x+1,0);
 
+    let names, values;
+    const handleChange = (e) => {
+        names = e.target.name;
+        values = e.target.value;
+        setNewuser({ ...newuser, [names]: values });
+        
+    }
+    console.log(newuser);
     const UpdataBtnClicked = async () => {
         console.log(skills);
+        console.log(newuser);
         const { name, lastname, title, phone, education, location, bloodgroup, about } = newuser;
         const res = await fetch('/api/v1/auth/update', {
             method: "PATCH",
@@ -122,6 +131,9 @@ const EditProfile = (props) => {
                     </div>
                     <div className="inputArea">
                         <input type="text" id="location" name="location" defaultValue={location} onChange={handleChange} placeholder='Location' />
+                    </div>
+                    <div className="inputArea">
+                        <h6>Select Profile Picture</h6>
                     </div>
 
 
@@ -217,6 +229,9 @@ const EditProfile = (props) => {
                             </div>
                             <div className="skillsBox">
                                 <label><input type="checkbox" onChange={CheckboxChanged} value="PHP" />PHP</label>
+                            </div>
+                            <div className="skillsBox">
+                                <label><input type="checkbox" onChange={CheckboxChanged} value="FLUTTER" />FLUTTER</label>
                             </div>
                         </div>
                     </div>

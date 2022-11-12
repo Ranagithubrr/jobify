@@ -42,6 +42,8 @@ const Login = () => {
                 window.alert('sign in successfully');
                 console.log(data.userExists.name);
                 localStorage.setItem('userid', JSON.stringify(data.userExists._id));
+                localStorage.setItem('name', JSON.stringify(data.userExists.name));
+                localStorage.setItem('lastname', JSON.stringify(data.userExists.lastname));
                 // localStorage.setItem('token', JSON.stringify(data.token));
             } else {
                 window.alert('Authentication errror');

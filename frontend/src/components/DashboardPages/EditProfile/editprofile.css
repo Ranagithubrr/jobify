@@ -43,6 +43,10 @@
     margin-right: 5px;
 
 }
+.editProfieEdit .inputArea input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 .disabledSelect{
     pointer-events: none;
 }

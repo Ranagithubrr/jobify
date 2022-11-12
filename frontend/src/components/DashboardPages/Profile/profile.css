@@ -10,11 +10,15 @@
    /* display: flex; */
    /* padding:20px 40px;  */
 }
+.profileAreaQuickLinks{
+   display: flex;
+   justify-content: space-evenly;
+}
 
 .profileArea .profileAreaLeft {
    /* border-right: 5px solid #2CB1BC; */
    text-align: center;
-   padding: 20px 40px;
+   padding: 20px 35px;
 
 }
 
@@ -43,7 +47,7 @@
    font-weight: 500;
    padding-top: 5px;
    text-transform: uppercase;
-   font-size: 14px;
+   font-size: 13px;
    font-weight: 500;
 }
 

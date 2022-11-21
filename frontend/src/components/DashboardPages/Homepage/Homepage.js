@@ -27,7 +27,10 @@ const Homepage = () => {
 
                 <div className="homePageUserProfile">
                   <div className="homePageUserProfileTop">
-                    <img src={UserProfile} alt="" />
+                    {
+                      e.photo !== "" ? <img src={e.photo} alt="" /> : <img src={UserProfile} alt="" />
+                    }
+                    {/* <img src={UserProfile} alt="" /> */}
                   </div>
                   <div className="homePageUserProfileBottom pt-5 mt-4">
                     <h4 className='userProfileName'>{e.name} {e.lastname}</h4>

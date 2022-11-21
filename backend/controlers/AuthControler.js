@@ -66,8 +66,8 @@ const update = async (req, res) => {
     // console.log(req.body);
     // const userid = req.body.id;
     const userid = JSON.parse(req.body.id);
-    console.log(userid);
-    const { name, location, lastname, about, bloodgroup, address, education, phone, title, skills } = req.body;
+    // console.log(userid);
+    const { name, location, lastname, about, bloodgroup, address, education, phone, title, skills, photo } = req.body;
     // console.log(skills);
     if (skills) {
         if (skills.length>5) {
@@ -78,8 +78,8 @@ const update = async (req, res) => {
 
             const filter = { '_id': userid };
             const doc = await User.findOne(filter);
-            console.log('old data is: ', doc);
-            console.log('old skills is: ',doc.skills);
+            // console.log('old data is: ', doc);
+            // console.log('old skills is: ',doc.skills);
             // const update = {
             //     name:  name == "" ? doc.name : name,
             //     email: email == "" ? doc.email : email,
@@ -104,6 +104,7 @@ const update = async (req, res) => {
                 phone: phone == undefined ? doc.phone :  phone == "" ? "" : phone,
                 title: title == undefined ? doc.title :  title == "" ? "" : title,
                 address: address == undefined ? doc.address :  address == "" ? "" : address,
+                photo: photo == undefined ? doc.photo :  photo == "" ? "" : photo,
                 skills: !skills || skills.length == 0   ? doc.skills : skills,
             };
             // let updated = await User.findOneAndUpdate(filter, update);
@@ -114,17 +115,16 @@ const update = async (req, res) => {
                 return res;
                 
             });
-            res.status(200).json({msg:'data send'});
+            
             const newData = await User.findOne(filter);
-            console.log('updated skills is: ', skills);
-            console.log('updated data is:', newData);
+            res.status(200).json(newData);
         }   
     }else {
 
         const filter = { '_id': userid };
         const doc = await User.findOne(filter);
-        console.log('old data is: ', doc);
-        console.log('old skills is: ',doc.skills);
+        // console.log('old data is: ', doc);
+        // console.log('old skills is: ',doc.skills);
         // const update = {
         //     name:  name == "" ? doc.name : name,
         //     email: email == "" ? doc.email : email,
@@ -149,6 +149,7 @@ const update = async (req, res) => {
             phone: phone == undefined ? doc.phone :  phone == "" ? "" : phone,
             title: title == undefined ? doc.title :  title == "" ? "" : title,
             address: address == undefined ? doc.address :  address == "" ? "" : address,
+            photo: photo == undefined ? doc.photo :  photo == "" ? "" : photo,
             skills: !skills || skills.length == 0   ? doc.skills : skills,
         };
         // let updated = await User.findOneAndUpdate(filter, update);

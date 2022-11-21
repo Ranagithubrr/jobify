@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Logo from '../../assets/images/logo.svg';
 import { Link, useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './Login.css';
 
 const Login = () => {
@@ -15,13 +17,24 @@ const Login = () => {
         value = e.target.value;
         setUser({ ...user, [name]: value });
     }
-
-
+    const showToast = () =>{
+        toast("Wow so easy!")
+    }
     // get res from form submit 
     const FormSubmitted = async (e) => {
         e.preventDefault();
         if (user.email === '' || user.password === '') {
-            window.alert('Please fill all the fields')
+            toast.error(' Please Fill all the fields!', {
+                position: "top-center",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                progress: undefined,
+                theme: "light",
+                });
+            // window.alert('Please fill all the fields')
         } else {
             // console.log(user);
             const { email, password } = user;
@@ -38,15 +51,42 @@ const Login = () => {
             // console.log(data);
             console.log(res.status);
             if (res.status === 201 || res.status === 200) {
-                navigate('/');
-                window.alert('sign in successfully');
+                
+                toast.success('Sign in success . . . Rederecting to Dashboard', {
+                    position: "top-center",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: false,
+                    progress: undefined,
+                    theme: "light",
+                    });
+                    setTimeout(()=>{
+                        navigate('/');
+                    },3000)
                 console.log(data.userExists.name);
                 localStorage.setItem('userid', JSON.stringify(data.userExists._id));
                 localStorage.setItem('name', JSON.stringify(data.userExists.name));
-                localStorage.setItem('lastname', JSON.stringify(data.userExists.lastname));
+                if(data.userExists.lastname === undefined){
+                    localStorage.setItem('lastname', '');
+                }else{
+                    localStorage.setItem('lastname', JSON.stringify(data.userExists.lastname));
+                }
+                
                 // localStorage.setItem('token', JSON.stringify(data.token));
             } else {
-                window.alert('Authentication errror');
+                toast.error('Authentication error !', {
+                    position: "top-center",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: false,
+                    progress: undefined,
+                    theme: "light",
+                    });
+                // window.alert('Authentication errror');
             }
         }
 
@@ -56,6 +96,10 @@ const Login = () => {
 
     return (
         <div className='signinpage'>
+            <ToastContainer 
+            position="top-center"
+            autoClose={2000}
+            />
             <form onSubmit={FormSubmitted}>
                 <div className="signinArea">
                     <img src={Logo} alt="Logo here" />
@@ -84,28 +128,11 @@ const Login = () => {
                         <input type="submit" value='Submit' className='defaultBtn' />
                     </div>
                     <p className='signreglink'>Not a member yet? <Link to="/register" >Register</Link></p>
+                    
                 </div>
             </form>
-
         </div>
     )
 }
 
 export default Login
-
-
-
-
-// import React from 'react'
-// import SignUpIn from '../../components/SignUpIn';
-
-// const Login = () => {
-//   return (
-//     <div>
-//         <SignUpIn Pagename="Log in" OtherPage="Register" LinkTo="/register" Member="Not a member yet ?"/>
-//     </div>
-//   )
-// }
-
-// export default Login
-

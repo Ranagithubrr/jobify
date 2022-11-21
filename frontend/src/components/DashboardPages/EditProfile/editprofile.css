@@ -47,6 +47,20 @@
   -webkit-appearance: none;
   margin: 0;
 }
+
+.editProfieEdit .selectProfilePhotoArea input{
+    display: none;
+}
+.editProfieEdit .selectProfilePhotoArea h6{
+    font-size: 14px;
+    padding-top: 5px;
+}
+.editProfieEdit .selectProfilePhotoArea .inputLabel{
+    font-size: 30px;
+    cursor: pointer;
+    text-align: center;
+}
+
 .disabledSelect{
     pointer-events: none;
 }

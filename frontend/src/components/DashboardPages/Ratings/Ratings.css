@@ -1,0 +1,41 @@
+.ratingArea{
+    width:50%;
+}
+.ratingArea textarea{
+    width:100%;
+    display: block;
+    border:none;
+    outline:none;
+    border-bottom: 5px solid #3D9BA3;
+}
+.ratingArea .fiveStar{
+    font-size: 40px;
+}
+.ratingArea .ratingAreatop{
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.ratingArea .ratingAreatop .ratingAreatopRight{
+    padding-left: 10px;
+}
+.ratingArea .ratingAreatop .ratingAreatopLeft .raterImage{
+    height:50px;
+    width:50px;
+    border-radius: 50%;
+}
+.ratingArea .ratingAreatop .deleteReview{
+    font-size: 20px;
+    cursor: pointer;
+    position: absolute;
+    top:0;
+    right:0;
+}
+.ratingArea .ratingAreaBottom p{
+    font-size: 15px;
+    line-height: 18px;
+    margin-top: 5px;
+}
+.ratingArea .ratingAreaBottom .quoteIcon{
+    font-size: 8px;
+}

@@ -55,7 +55,8 @@ const UserProfile = () => {
     phone,
     title,
     skills,
-    website
+    website,
+    photo
   } = user.response;
 
   return (
@@ -63,7 +64,14 @@ const UserProfile = () => {
       <div className="row">
         <div className="col-3 profileAreaLeft py-4">
           <div className="profileImageArea">
-            <img src={ProfilePic} alt="profile" className='img-fluid profileImage' />
+            {
+              
+              <img src={
+                photo ? photo : ProfilePic
+              } alt="" className='img-fluid' />
+
+            }
+            {/* <img src={ProfilePic} alt="profile" className='img-fluid profileImage' /> */}
           </div>
 
           <div className="usersSkills">

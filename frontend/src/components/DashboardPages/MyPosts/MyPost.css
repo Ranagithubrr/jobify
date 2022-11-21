@@ -1,0 +1,54 @@
+.myPostAreaPost{
+    box-shadow: 0px -1px 12px 0px rgba(105, 105, 105, 0.9);
+    -webkit-box-shadow: 0px -1px 12px 0px rgba(148, 147, 147, 0.9);
+    -moz-box-shadow: 0px -1px 12px 0px rgba(133, 132, 132, 0.9);
+    padding:20px;
+    border-radius: 5px;
+    height:300px;
+}
+.mypostArea .myPostAreaPost .postProfilePhoto{
+    height:50px;
+    width:50px;
+    border-radius: 50%;
+}
+.mypostArea .myPostAreaPost .topMyPostArea{
+    position: relative;
+}
+.mypostArea .myPostAreaPost .topMyPostArea .PostdeleteIcon{
+    position: absolute;
+    top:-20px;
+    right:20px;
+    font-size: 25px;
+    cursor:pointer;
+}
+.mypostArea .myPostAreaPost .topMyPostArea h5{
+    font-size: 14px;
+    font-weight: 400;
+    margin: 0;
+    padding:0;
+    color:#7c7c7c;
+}
+.mypostArea .myPostAreaPost .topMyPostArea h5 span{
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+    padding:0;
+    color:#2e2e2e;
+}
+.mypostArea .myPostAreaPost .topMyPostArea span{
+    font-size: 14px;
+}
+.mypostArea .myPostAreaSinglePost p{
+    display: -webkit-box;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 15px;
+    text-align: justify;
+}
+.myPostAreaPost .myPostAreaSinglePost .postbodyArea h4{
+    font-size: 20px;
+    text-transform: capitalize;
+    margin-bottom: 0;
+}

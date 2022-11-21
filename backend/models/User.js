@@ -38,12 +38,6 @@ const UserSchema = new mongoose.Schema({
         maxlength: 40,
         default: ''
     },
-    address: {
-        type: String,
-        trim: true,
-        maxlength: 40,
-        default: ''
-    },
     bloodgroup: {
         type: String,
         trim: true,
@@ -77,6 +71,10 @@ const UserSchema = new mongoose.Schema({
     skills:{
         type:Array,
         default:[],
+    },
+    photo:{
+        type:String,
+        default:'',
     }
 });
 

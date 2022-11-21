@@ -14,6 +14,8 @@ import Profile from './components/DashboardPages/Profile/Profile';
 import EditProfile from './components/DashboardPages/EditProfile/EditProfile';
 import AddPosts from './components/DashboardPages/AddPosts/AddPosts';
 import AllPosts from './components/DashboardPages/AllPosts/AllPosts';
+import MyPosts from './components/DashboardPages/MyPosts/MyPosts';
+import Ratings from './components/DashboardPages/Ratings/Ratings';
 
 function App() {
   const [user, setUser] = useState({ response: {} });
@@ -62,8 +64,10 @@ function App() {
             }>
               <Route index element={<HomePage />} />
               <Route path="/add-posts" element={<AddPosts User={user}/>} />
+              <Route path="/my-posts" element={<MyPosts User={user}/>} />
               <Route path="/all-posts" element={<AllPosts />} />
               <Route path="/profile" element={<Profile  />} />
+              <Route path="/rate" element={<Ratings  />} />
               <Route path="/user/:userid" element={<UserProfile />} />
               <Route path="/edit-profile" element={<EditProfile User={user} IsLoading={loading} />} />
             </Route>

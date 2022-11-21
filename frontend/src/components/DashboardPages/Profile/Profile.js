@@ -5,6 +5,7 @@ import { TbChecks } from 'react-icons/tb';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { IoIosCall } from 'react-icons/io';
+import axios from 'axios';
 
 const Profile = () => {
 
@@ -15,7 +16,7 @@ const Profile = () => {
   }, []);
 
   const userid = JSON.parse(localStorage.getItem('userid'));
-
+  // load user data
   const LoadUserDataFunc = async () => {
 
     try {
@@ -40,7 +41,7 @@ const Profile = () => {
   };
   console.log(loading);
 
-
+  // set datas
 
   const {
     name,
@@ -54,15 +55,24 @@ const Profile = () => {
     phone,
     title,
     skills,
-    website
+    website,
+    photo
   } = user.response;
+
 
   return (
     <div className='profileArea'>
       <div className="row">
         <div className="col-3 profileAreaLeft py-4">
           <div className="profileImageArea">
-            <img src={ProfilePic} alt="profile" className='img-fluid profileImage' />
+            {
+
+            <img src={
+              photo ? photo : ProfilePic
+            } alt="" className='img-fluid'/>
+
+            }
+            
           </div>
 
           <div className="usersSkills">

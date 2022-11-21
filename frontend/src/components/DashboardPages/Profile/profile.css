@@ -29,6 +29,10 @@
    border-radius: 5px;
    overflow: hidden;
 }
+.profileArea .profileAreaLeft .profileImageArea img{
+   width: 100%;
+   height:100%;
+}
 
 .profileArea .profileAreaLeft .usersSkills {
    text-align: left;

@@ -1,65 +1,131 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
-import { MdTitle } from 'react-icons/md';
-import { RiReservedFill } from 'react-icons/ri';
 import './AddPosts.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AddPosts = () => {
-  const userid = JSON.parse(localStorage.getItem('userid'))
-  const name = JSON.parse(localStorage.getItem('name'))
-  const lastname = JSON.parse(localStorage.getItem('lastname'))
+  const userid = JSON.parse(localStorage.getItem('userid'));
+  let name = JSON.parse(localStorage.getItem('name'));
+  let lastname = JSON.parse(localStorage.getItem('lastname'));
 
-  const postedby = name + ' ' + lastname;
 
-  const [post , setPost] = useState({
-    posttitle:"",
-    postbody:"",
-    userid:userid,
-    postedby: postedby,
+  const [user, setUser] = useState({ response: {} });
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    LoadUserDataFunc();
+  }, []);
+  // load user photo only
+  const LoadUserDataFunc = async () => {
+
+    try {
+      const res = await fetch('/api/v1/jobs/userdata', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          userid
+        }),
+      });
+      const response = await res.json();
+      if (response) {
+        setUser({ ...user, response });
+        setLoading(false);
+      }
+    }
+    catch (err) {
+      console.log('err');
+    }
+  };
+  console.log(loading);
+
+  const [post, setPost] = useState({
+    posttitle: "",
+    postbody: ""
   });
 
-
+  console.log(user.response.photo);
 
 
 
   const InputChanged = (e) => {
-      let name, value;
-      // console.log(e.target.name, e.target.value);
-      name = e.target.name;
-      value = e.target.value;
-      setPost({ ...post, [name]: value });
+    let name, value;
+    // console.log(e.target.name, e.target.value);
+    name = e.target.name;
+    value = e.target.value;
+    setPost({ ...post, [name]: value });
   }
 
-  const PostSubmitted = async (e) =>{
+  const PostSubmitted = async (e) => {
     e.preventDefault();
-    const {posttitle,postbody,userid,postedby} = post;
-
-    if(posttitle === "" || postbody === ""){
-      window.alert('Fill all the fields')
-    }else{
+    const { posttitle, postbody } = post;
+    console.log(post);
+    if (posttitle === "" || postbody === "") {
+      toast.error('Fill all the fields', {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+      });
+    } else {
       const res = await fetch('/api/v1/jobs/add-posts', {
         method: "POST",
         headers: {
-            "Content-Type": "application/json"
+          "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            posttitle, postbody,userid,postedby
+          posttitle, postbody, userid, name, lastname, photo: user.response.photo
         })
-    });
-    if(res.status === 201){
-      window.alert('Post Created Successfully');
+      });
+      if (res.status === 201) {
+        toast.success('Post Created Successfully', {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: false,
+          progress: undefined,
+          theme: "light",
+        });
+      } else {
+        toast.error('Failed to Post', {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: false,
+          progress: undefined,
+          theme: "light",
+        });
+      }
     }
-    }
+    setPost({
+      posttitle: "",
+      postbody: ""
+    })
   }
   return (
     <div className='addPostArea'>
+      <ToastContainer />
       <h3 className='pb-2'>Add Posts</h3>
-      <form  onSubmit={PostSubmitted}>
+      <form onSubmit={PostSubmitted}>
         <div className="AddPostformArea">
-          <input type="text" placeholder='Post Title' defaultValue={post.posttitle} name="posttitle" onChange={InputChanged}/>
-          <textarea className='mt-2' name="postbody" id="addpost" cols="30" rows="10" onChange={InputChanged} placeholder='Write Post Here . . . '></textarea>
+
+          <input type="text" placeholder='Post Title' value={post.posttitle} name="posttitle" onChange={InputChanged} className='addPostTitle' />
+          <textarea className='mt-2' name="postbody" value={post.postbody} id="addpost" cols="30" rows="10" onChange={InputChanged} placeholder='Write Post Here . . . '></textarea>
           <button type="submit" className='defaultBtn' >POST</button>
-          <button type="reset" className='resetBtn' >Reset</button>
+          <button type="reset" className='resetBtn' onClick={() => setPost({
+            posttitle: "",
+            postbody: ""
+          })}>Reset</button>
         </div>
       </form>
     </div>

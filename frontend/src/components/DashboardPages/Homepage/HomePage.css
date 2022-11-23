@@ -57,3 +57,10 @@
 .homePageUserProfileBottomBottom ul li span{
     padding-right: 10px;
 }
+.profileImageSkelaton{
+    text-align: center;
+}
+.profileImageSkelaton span{
+    display: block;
+    margin:0 auto;
+}

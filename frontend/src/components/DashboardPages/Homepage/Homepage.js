@@ -1,28 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import UserProfile from '../../../assets/images/download.jfif';
-// import ProfileBackgrouund from '../../assets/images/profileBackground.webp';
 import './HomePage.css';
-import { IoMdMail, IoIosCall, IoLocation } from 'react-icons/io';
+import { IoMdMail, IoIosCall } from 'react-icons/io';
 import { ImLocation } from 'react-icons/im';
 import { TbWorld } from 'react-icons/tb';
 import { Link } from 'react-router-dom';
 
 const Homepage = () => {
-  const [user, setUser] = useState([])
+  const [user, setUser] = useState([]);
+  // const [loading, setLoading] = useState(true)
   useEffect(() => {
     fetch('/api/v1/jobs/all-users')
       .then(response => response.json())
-      .then(data => setUser(data.user));
+      // .then(data => { setUser(data.user)});
+      .then(data => {
+        setUser(data.user)
+        // setLoading(false)
+      });
+      // eslint-disable-next-line
   }, [])
-  console.log(user.length);
-  // const {name,lastname,email,location,title} = user[0];
-  // console.log(user.name);
   return (
     <div className='row'>
       {
         user.map((e) => {
           return (
-            <div className="col-3 mt-3 homePageUserProfileArea">
+            <div className="col-12 col-lg-3 mt-3 homePageUserProfileArea" key={e._id}>
               <Link to={`user/${e._id}`}>
 
                 <div className="homePageUserProfile">
@@ -30,7 +32,7 @@ const Homepage = () => {
                     {
                       e.photo !== "" ? <img src={e.photo} alt="" /> : <img src={UserProfile} alt="" />
                     }
-                    {/* <img src={UserProfile} alt="" /> */}
+
                   </div>
                   <div className="homePageUserProfileBottom pt-5 mt-4">
                     <h4 className='userProfileName'>{e.name} {e.lastname}</h4>

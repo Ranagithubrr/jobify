@@ -6,15 +6,13 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const AddPosts = () => {
   const userid = JSON.parse(localStorage.getItem('userid'));
-  let name = JSON.parse(localStorage.getItem('name'));
-  let lastname = JSON.parse(localStorage.getItem('lastname'));
-
 
   const [user, setUser] = useState({ response: {} });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     LoadUserDataFunc();
+    // eslint-disable-next-line
   }, []);
   // load user photo only
   const LoadUserDataFunc = async () => {
@@ -39,14 +37,14 @@ const AddPosts = () => {
       console.log('err');
     }
   };
-  console.log(loading);
+  // console.log(loading);
 
   const [post, setPost] = useState({
     posttitle: "",
     postbody: ""
   });
 
-  console.log(user.response.photo);
+  // console.log(user.response.photo);
 
 
 
@@ -80,7 +78,7 @@ const AddPosts = () => {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          posttitle, postbody, userid, name, lastname, photo: user.response.photo
+          posttitle, postbody, userid, name: user.response.name, lastname: user.response.lastname, photo: user.response.photo
         })
       });
       if (res.status === 201) {
@@ -112,6 +110,8 @@ const AddPosts = () => {
       postbody: ""
     })
   }
+
+  
   return (
     <div className='addPostArea'>
       <ToastContainer />

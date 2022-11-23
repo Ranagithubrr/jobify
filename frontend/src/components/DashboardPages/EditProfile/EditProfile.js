@@ -3,22 +3,21 @@ import './editprofile.css';
 import { FiEdit } from 'react-icons/fi'
 import { FaPlus } from 'react-icons/fa'
 import { useEffect } from 'react';
-import ProfileDefaultPhoto from '../../../assets/images/download.jfif';
-import axios from 'axios';
 import { storage } from '../../../firebaseConfig';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 
-const EditProfile = (props) => {
+const EditProfile = () => {
     const navigate = useNavigate();
     const id = localStorage.getItem('userid');
     // loading the user
     const [user, setUser] = useState({ response: {} });
-    const [loading, setLoading] = useState(true);
+    // const [loading, setLoading] = useState(true);
     useEffect(() => {
         LoadUserDataFunc();
+        // eslint-disable-next-line
     }, []);
 
     const userid = JSON.parse(localStorage.getItem('userid'));
@@ -39,14 +38,14 @@ const EditProfile = (props) => {
             const response = await res.json();
             if (response) {
                 setUser({ ...user, response });
-                setLoading(false);
+                // setLoading(false);
             }
         }
         catch (err) {
             console.log('err');
         }
     };
-    console.log(loading);
+    // console.log(loading);
 
 
     // console.log(User);
@@ -54,10 +53,6 @@ const EditProfile = (props) => {
 
     const { name, lastname, title, phone, education, location, bloodgroup, about, photo } = user.response;
     // console.log(name);
-
-
-
-
 
 
     let skills = [];
@@ -72,7 +67,7 @@ const EditProfile = (props) => {
                 }
             }
         };
-        console.log(skills);
+        // console.log(skills);
     };
 
     const [file, setFile] = useState(null);
@@ -128,7 +123,7 @@ const EditProfile = (props) => {
                 },
                 () => {
                     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                        console.log('File available at', downloadURL);
+                        // console.log('File available at', downloadURL);
                         setImgurl(downloadURL);
                         setNewuser({
                             photo: downloadURL
@@ -140,11 +135,12 @@ const EditProfile = (props) => {
             );
         };
         file && uploadFile();
+        // eslint-disable-next-line
     }, [file])
 
 
-    console.log(photo);
-    console.log(img);
+    // console.log(photo);
+    // console.log(img);
 
     let names, values;
     const handleChange = (e) => {
@@ -154,10 +150,10 @@ const EditProfile = (props) => {
 
     }
 
-    console.log(newuser);
+    // console.log(newuser);
     const UpdataBtnClicked = async () => {
-        console.log(skills);
-        console.log(newuser);
+        // console.log(skills);
+        // console.log(newuser);
         const { name, lastname, title, phone, education, location, bloodgroup, about, photo } = newuser;
         // localStorage.setItem('lastname',JSON.stringify(lastname));
         fetch('/api/v1/auth/update', {
@@ -205,9 +201,25 @@ const EditProfile = (props) => {
             })
 
 
-            // update post data 
+        // update post data 
 
         fetch('/api/v1/jobs/update-post', {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                userid, name, lastname, photo
+            }),
+        })
+            .then((res) => {
+                // console.log(res.status);
+                return res.json();
+            })
+            .then((data) => console.log(data))
+
+        // update review data 
+        fetch('/api/v1/jobs/update-review', {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json"
@@ -227,7 +239,7 @@ const EditProfile = (props) => {
         <div className='profileArea'>
             <ToastContainer />
             <div className="row editProfieEdit">
-                <div className="col-2">
+                <div className="col-12 col-lg-2">
                     <div className="inputArea">
                         <div className="selectProfilePhotoArea">
                             <img src={
@@ -242,7 +254,7 @@ const EditProfile = (props) => {
                     </div>
 
                 </div>
-                <div className="col-5">
+                <div className="col-12 col-lg-5">
                     <div className="inputArea">
                         <input type="text" id="name" name="name" defaultValue={name} onChange={handleChange} placeholder='First Name' />
                     </div>
@@ -258,7 +270,7 @@ const EditProfile = (props) => {
 
 
                 </div>
-                <div className="col-5">
+                <div className="col-12 col-lg-5">
                     <div className="inputArea">
                         <input type="text" id="lastname" name="lastname" defaultValue={lastname} onChange={handleChange} placeholder='Last Name' />
                     </div>

@@ -5,19 +5,22 @@ import { RiDeleteBin5Line, RiH2 } from 'react-icons/ri';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Link } from 'react-router-dom';
 
 const MyPosts = () => {
 
     const [posts, setPosts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [deletee, setDeletee] = useState(false)
+    const [deletee, setDeletee] = useState(false);
 
     // const userid = localStorage.getItem('userid')
     useEffect(() => {
         MyPostFunc();
+        // eslint-disable-next-line
     }, []);
     useEffect(() => {
         MyPostFunc();
+        // eslint-disable-next-line
     }, [deletee]);
 
     const userid = JSON.parse(localStorage.getItem('userid'));
@@ -44,9 +47,9 @@ const MyPosts = () => {
             console.log('err');
         }
     };
-    console.log(posts);
+    // console.log(posts);
 
-    const GetPostData = (date) => {
+    const GetPostDate = (date) => {
         var mongooseDate = new Date(date);  // dateStr you get from mongodb
 
         var d = mongooseDate.getDate();
@@ -90,30 +93,32 @@ const MyPosts = () => {
         <div className='row mypostArea'>
             <ToastContainer />
             {posts.length === 0 ? <h2>No Post Yet</h2> : (
-
                 posts.map((ele) => {
-                    return ( 
-                        <div className="col-4 mt-3">
-                            <div className="myPostAreaPost">
-                                <div className="myPostAreaSinglePost">
-                                    <div className="row d-flex align-items-center topMyPostArea">
-                                        <div className="col-3">
-                                            <img src={
+                    return (
+                        <div className="col-12 col-lg-4 mt-3 mypostAreaInner" key={ele._id}>
+                            <abbr title="Delete this Post"><span className='PostdeleteIcon' id={ele._id} onClick={DeletePostButtonClicked}><RiDeleteBin5Line /></span></abbr>
+                            <Link to={`/post/${ele._id}`}>
+                                <div className="myPostAreaPost">
+                                    <div className="myPostAreaSinglePost">
+                                        <div className="row d-flex align-items-center topMyPostArea">
+                                            <div className="col-3">
+                                                <img src={
                                                     ele.photo !== null ? ele.photo : demoPhoto
-                                            } alt="not found" className='img-fluid postProfilePhoto'/>    
+                                                } alt="not found" className='img-fluid postProfilePhoto' />
+                                            </div>
+                                            <div className="col-7 px-0">
+
+                                                <h5>Author: <span> {ele.name} {ele.lastname} </span></h5>
+                                                <h5>Posted at : <span>{GetPostDate(ele.postdate)}</span>  </h5>
+                                            </div>
                                         </div>
-                                        <div className="col-7 px-0">
-                                            <abbr title="Delete this Post"><span className='PostdeleteIcon' id={ele._id} onClick={DeletePostButtonClicked}><RiDeleteBin5Line /></span></abbr>
-                                            <h5>Author: <span> {ele.name} {ele.lastname} </span></h5>
-                                           <h5>Posted at : <span>{GetPostData(ele.postdate)}</span>  </h5> 
+                                        <div className="row mt-3 postbodyArea">
+                                            <h4>{ele.posttitle}</h4>
+                                            <p>{ele.postbody}</p>
                                         </div>
-                                    </div>
-                                    <div className="row mt-3 postbodyArea">
-                                        <h4>{ele.posttitle}</h4>
-                                        <p>{ele.postbody}</p>
                                     </div>
                                 </div>
-                            </div>
+                            </Link>
                         </div>
                     )
                 })

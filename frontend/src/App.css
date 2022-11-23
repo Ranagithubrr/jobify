@@ -1,49 +1,145 @@
-
 /* remove padding from bootstrap container */
-.container-fluid{
-  padding:0 !important;
+.container-fluid {
+  padding: 0 !important;
 }
 
 
+/* mobile design starts here  */
 
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* for mobile design  */
+@media screen and (max-width:768px) {
+  .topbar .baricon {
+    font-size: 30px;
+    color: #2CB1BC;
+    font-weight: 800;
+    cursor: pointer;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 3;
   }
 
-  to {
-    transform: rotate(360deg);
+  .topbar .dashboardName {
+    display: none;
+  }
+
+  .sidebar {
+    width: 250px;
+    position: fixed;
+    top: 72px;
+    background-color: white;
+    z-index: 2;
+    min-height: 100vh;
+  }
+
+  .sidebar .sidebarMenu {
+    padding-top: 10px !important;
+  }
+
+  .sidebar .sidebarLogo {
+    display: none;
+  }
+
+  .topbarAreaMain {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+    z-index: 2;
+  }
+
+  .mainAreaInner {
+    margin-top: 60px;
+  }
+
+  .myPostAreaPost {
+    height: initial !important;
+  }
+
+  .addPostArea {
+    width: 100% !important;
+  }
+
+  .ratingArea {
+    width: 100% !important;
+  }
+
+  .dashboard .mainArea .mainAreaInner {
+    padding: 30px !important;
+  }
+
+  .dashboard .mainArea .mainAreaInner .profileArea {
+    width: 100% !important;
+  }
+
+  .profileArea .profileAreaLeft .profileImageArea {
+    width: 50% !important;
+  }
+
+  .profileArea .profileAreaLeft .usersSkills {
+    padding-top: 0 !important;
+  }
+
+  .profileArea .profileAreaRight .profileAreraRightTop {
+    padding-right: 0 !important;
+  }
+
+  .profileArea .profileAreaRight .profileAreraRightTop .profileAreraRightTopLeft .userName {
+    font-size: 20px !important;
+  }
+
+  .profileArea .profileAreaRight .profileAreraRightTop .profileAreraRightTopRight .editProfileBtn {
+    padding: 4px 15px !important;
+  }
+
+  .profileArea .profileAreaRight .profileAreraRightTop {
+    align-items: center;
+  }
+
+  .profileSectionAbout .profileSectionAboutLeft {
+    width: 35% !important;
+  }
+
+  .profileSectionAbout .profileSectionAboutRight {
+    width: 65% !important;
+  }
+
+  .viewPostArea .viewPostAreaPostedBy {
+    border-right: none !important;
+  }
+
+  .editProfieEdit .selectProfilePhotoArea img {
+    width: 100%;
+  }
+
+  .editProfieEdit {
+    padding: 40px 20px !important;
+  }
+
+  .signinpage {
+    align-items: initial !important;
+    padding-top: 100px;
+  }
+
+  .signinArea {
+    width: 340px !important;
+  }
+
+  .dashboard .showSideBar {
+    width: 0 !important;
+    margin-left: 0;
+  }
+  .blurArea{
+    min-height: 100vh;
+    min-width: 100vw;
+    background-color: #757575be;
+    opacity: 0.8;
+    position:fixed;
+    top:0;
+    left:0;
+    pointer-events: none !important;
+    
   }
 }

@@ -28,6 +28,7 @@
    background-color: #38caf7;
    border-radius: 5px;
    overflow: hidden;
+   padding: 0;
 }
 .profileArea .profileAreaLeft .profileImageArea img{
    width: 100%;

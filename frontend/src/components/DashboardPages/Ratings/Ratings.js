@@ -11,12 +11,15 @@ const Ratings = () => {
 
     const [allReview, setAllReview] = useState([]);
     const [deletee, setDeletee] = useState(false);
+    
 
     useEffect(() => {
         getAllReview();
+        // eslint-disable-next-line
     }, []);
     useEffect(() => {
         getAllReview();
+        // eslint-disable-next-line
     }, [deletee]);
     const getAllReview = async () => {
         fetch('/api/v1/jobs/all-review')
@@ -30,6 +33,7 @@ const Ratings = () => {
 
     useEffect(() => {
         LoadUserDataFunc();
+        // eslint-disable-next-line
     }, []);
 
     const userid = JSON.parse(localStorage.getItem('userid'));
@@ -169,9 +173,9 @@ const Ratings = () => {
                 <button onClick={ButtonClicked} className='defaultBtn mt-3'>Post Review</button>
             </div>
             {
-                allReview.map((ele) => {
+                allReview.slice(0).reverse().map((ele) => {
                     return (
-                        <div className="showRatings mt-4">
+                        <div className="showRatings mt-4" key={ele._id}>
                             <div className="ratingAreaMain" >
                                 <div className="ratingAreatop">
                                     <div className="ratingAreatopLeft">

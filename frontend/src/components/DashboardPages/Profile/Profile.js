@@ -13,6 +13,7 @@ const Profile = () => {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     LoadUserDataFunc();
+    // eslint-disable-next-line
   }, []);
 
   const userid = JSON.parse(localStorage.getItem('userid'));
@@ -39,7 +40,7 @@ const Profile = () => {
       console.log('err');
     }
   };
-  console.log(loading);
+  // console.log(loading);
 
   // set datas
 
@@ -63,30 +64,32 @@ const Profile = () => {
   return (
     <div className='profileArea'>
       <div className="row">
-        <div className="col-3 profileAreaLeft py-4">
-          <div className="profileImageArea">
-            {
-
-            <img src={
-              photo ? photo : ProfilePic
-            } alt="" className='img-fluid'/>
-
-            }
-            
-          </div>
-
-          <div className="usersSkills">
-            <ul>
-              <li>Skills</li>
+        <div className="col-12 col-lg-3 profileAreaLeft py-4">
+          <div className="row">
+            <div className="profileImageArea col-7 col-lg-12">
               {
-                loading ? console.log('loading') : (
-                  skills.map((e) => {
-                    return <li key={e.index}> <TbChecks /> {e}</li>
-                  })
-                )
+
+                <img src={
+                  photo ? photo : ProfilePic
+                } alt="" className='img-fluid' />
+
               }
 
-            </ul>
+            </div>
+
+            <div className="usersSkills col-5 col-lg-12">
+              <ul>
+                <li>Skills</li>
+                {
+                  loading ? null : (
+                    skills.map((e,index) => {
+                      return <li key={index}> <TbChecks /> {e}</li>
+                    })
+                  )
+                }
+
+              </ul>
+            </div>
           </div>
           <div className="profileAreaQuickLinks">
             <span className='profileMailBox'><a href={`mailto:${email}`}><RiMailAddFill /></a></span>
@@ -99,7 +102,7 @@ const Profile = () => {
           </div>
 
         </div>
-        <div className="col-9 profileAreaRight">
+        <div className="col-12 col-lg-9 profileAreaRight">
           <div className="profileAreraRightTop">
             <div className="profileAreraRightTopLeft">
               <h4 className='userName'>{name} {lastname}</h4>

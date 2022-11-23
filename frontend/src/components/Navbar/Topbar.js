@@ -12,8 +12,9 @@ const Topbar = (props) => {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     LoadUserDataFunc();
+    // eslint-disable-next-line
   }, []);
-console.log(user.response.name);
+// console.log(user.response.name);
   const userid = JSON.parse(localStorage.getItem('userid'));
 
   const LoadUserDataFunc = async () => {
@@ -38,7 +39,7 @@ console.log(user.response.name);
       console.log('err');
     }
   };
-  console.log(loading);
+  // console.log(loading);
 
   // loaded the user 
 
@@ -60,13 +61,12 @@ console.log(user.response.name);
     localStorage.removeItem('token');
     window.location.reload();
   }
-  const userId = JSON.parse(localStorage.getItem('userid'));
   // console.log(userName);
   return (
     <>
       <div className='topbar'>
         <div><span className='baricon' onClick={BarIconClicked}><RiBarChartHorizontalFill /></span></div>
-        <div><span><h2>Dashboard</h2></span></div>
+        <div><span><h2 className='dashboardName'>Dashboard</h2></span></div>
         <div className='userButtonArea'>
           <button className='userButton' onClick={ButtonClicked}><HiUserCircle /><span>{user.response.lastname ? user.response.lastname : user.response.name}</span> <MdArrowDropDown /> </button>
           {

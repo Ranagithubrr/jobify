@@ -1,0 +1,35 @@
+.viewPostArea .viewPostAreaTop{
+    display: flex;
+    align-items: center;
+}
+.viewPostArea .viewPostAreaTopPostImg{
+    border-right:2px solid #3D9BA3;
+    padding:0 20px;
+    text-align: center;
+}
+.viewPostArea .viewPostAreaTop .viewPostAreasImg{
+    width:60px;
+    height:60px;
+    border-radius: 50%;
+}
+.viewPostArea .viewPostAreaPostedBy{
+    border-right:2px solid #3D9BA3;
+    padding:0 20px;
+    text-align: center;
+
+}
+.viewPostArea .viewPostAreaPostedBy h6{
+    font-size: 20px;
+    font-weight: 700;
+}
+.viewPostArea .viewPostAreaPostname{
+    padding:0 20px;
+    text-transform: capitalize;
+}
+.viewPostArea .PostdeleteIcon{
+    font-size: 25px;
+    cursor: pointer;
+}
+.viewPostArea .viewPostAreaBottom p{
+    text-align: justify;
+}

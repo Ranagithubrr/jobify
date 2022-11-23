@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import demoPhoto from '../../../assets/images/download.png';
 
 const AllPosts = () => {
@@ -9,8 +10,9 @@ const AllPosts = () => {
     fetch('/api/v1/jobs/all-post')
       .then(response => response.json())
       .then(data => setAllPost(data.post));
+      // eslint-disable-next-line
   }, [])
-  console.log(allPost);
+  // console.log(allPost);
 
 
   const GetPostData = (date) => {
@@ -30,26 +32,30 @@ const AllPosts = () => {
 
         allPost.map((ele) => {
           return (
-            <div className="col-4 mt-3">
+            <div className="col-12 col-lg-4 mt-3 mypostAreaInner" key={ele._id}>
+              <Link to={`/post/${ele._id}`}>
               <div className="myPostAreaPost">
-                <div className="myPostAreaSinglePost">
-                  <div className="row d-flex align-items-center topMyPostArea">
-                    <div className="col-3">
-                      <img src={
-                        ele.photo !== null ? ele.photo : demoPhoto
-                      } alt="not found" className='img-fluid postProfilePhoto' />
+                
+                  <div className="myPostAreaSinglePost">
+                    <div className="row d-flex align-items-center topMyPostArea">
+                      <div className="col-3">
+                        <img src={
+                          ele.photo !== null ? ele.photo : demoPhoto
+                        } alt="not found" className='img-fluid postProfilePhoto' />
+                      </div>
+                      <div className="col-9 px-0">
+                        <h5>Author: <span>{ele.name} {ele.lastname}</span></h5>
+                        <h5>Posted at : <span>{GetPostData(ele.postdate)}</span></h5>
+                      </div>
                     </div>
-                    <div className="col-9 px-0">
-                      <h5>Author: <span>{ele.name} {ele.lastname}</span></h5>
-                      <h5>Posted at : <span>{GetPostData(ele.postdate)}</span></h5>
+                    <div className="row mt-3 postbodyArea">
+                      <h4>{ele.posttitle}</h4>
+                      <p>{ele.postbody}</p>
                     </div>
                   </div>
-                  <div className="row mt-3 postbodyArea">
-                    <h4>{ele.posttitle}</h4>
-                    <p>{ele.postbody}</p>
-                  </div>
-                </div>
+                
               </div>
+              </Link>
             </div>
           )
         })
